@@ -1,5 +1,3 @@
-import org.apache.spark.api.java.function.MapFunction;
-import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -24,12 +22,13 @@ public class SparkExample {
         parquetFileDF.createOrReplaceTempView("parquetFile");
 
         Dataset<Row> namesDF = spark.sql("SELECT last_name FROM parquetFile where id=2");
+
+        //namesDF.write().json("C:\\Users\\dinesven\\Desktop\\B!nGo\\ubs-create-instrument\\src\\main\\resources\\data\\spark.json");
      /*   Dataset<String> namesDS = namesDF.map(
                 (MapFunction<Row, String>) row -> "id: " + row.getString(1),
                 Encoders.STRING());*/
 
         namesDF.show();
-        System.out.println("*************************************"+namesDF.equals("Freeman"));
     }
     }
 
